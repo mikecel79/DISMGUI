@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DISM GUI", "DISM GUI\DISM GUI.vbproj", "{D3E5BCD3-DED9-48F3-B457-70F561E54A1A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://us-mertfs02:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DISM\u0020GUI\\DISM\u0020GUI.vbproj
+		SccProjectName1 = DISM\u0020GUI
+		SccLocalPath1 = DISM\u0020GUI
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3E5BCD3-DED9-48F3-B457-70F561E54A1A}.Debug|x86.ActiveCfg = Debug|x86
+		{D3E5BCD3-DED9-48F3-B457-70F561E54A1A}.Debug|x86.Build.0 = Debug|x86
+		{D3E5BCD3-DED9-48F3-B457-70F561E54A1A}.Release|x86.ActiveCfg = Release|x86
+		{D3E5BCD3-DED9-48F3-B457-70F561E54A1A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
