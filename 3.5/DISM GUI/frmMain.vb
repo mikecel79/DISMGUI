@@ -321,7 +321,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Packages"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Packages"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -439,7 +439,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Features"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Features"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -690,7 +690,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Apps"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Apps"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -819,7 +819,7 @@ Public Class frmMain
             'Do Nothing
         End If
         strMSPFileName = txtPatchLocation.Text
-        strDISMArguments = "/image:" & strMountedImageLocation & " /Check-AppPatch /PatchLocation:" & strMSPFileName
+        strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Check-AppPatch /PatchLocation:" & strMSPFileName
         BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
         frmProgress.ShowDialog()
         txtOutput.Text = strOutput
