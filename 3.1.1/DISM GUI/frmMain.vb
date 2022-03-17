@@ -163,7 +163,7 @@ Public Class frmMain
         strOutput = strOutput & vbCr & vbCr & DISM.StandardOutput.ReadToEnd()
         DISM.WaitForExit()
         'txtOutput.Text = output
-        strDISMExitCode = DISM.ExitCode
+        strDISMExitCode = DISM.ExitCode.ToString()
     End Sub
 
     Private Sub BackgroundWorkerMount_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerMount.RunWorkerCompleted
@@ -212,7 +212,7 @@ Public Class frmMain
 
         strOutput = strOutput & vbCr & vbCr & DISM.StandardOutput.ReadToEnd()
         DISM.WaitForExit()
-        strDISMExitCode = DISM.ExitCode
+        strDISMExitCode = DISM.ExitCode.ToString()
     End Sub
 
     Private Sub BackgroundWorkerDisMount_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerDisMount.RunWorkerCompleted
@@ -229,7 +229,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnOpnDriverFolder_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpnDriverFolder.Click
-        txtDriverLocation.Text = OpenFolder()
+        txtDriverLocation.Text = OpenFolder().ToString()
     End Sub
 
     Private Sub btnAddDriver_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddDriver.Click
@@ -267,7 +267,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BackgroundWorkerDISMCommand_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerDISMCommand.DoWork
-        Dim strInput As String = e.Argument
+        Dim strInput As String = e.Argument.ToString()
         strDISMExitCode = ""
         Dim DISM As New Process()
         DISM.StartInfo.RedirectStandardOutput = True
@@ -280,7 +280,7 @@ Public Class frmMain
         DISM.Start()
         strOutput = strOutput & vbCr & vbCr & DISM.StandardOutput.ReadToEnd()
         DISM.WaitForExit()
-        strDISMExitCode = DISM.ExitCode
+        strDISMExitCode = DISM.ExitCode.ToString()
     End Sub
 
     Private Sub BackgroundWorkerDISMCommand_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerDISMCommand.RunWorkerCompleted
@@ -315,16 +315,16 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Packages"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Packages"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
         End If
     End Sub
 
-    
+
     Private Sub btnOpenPackageFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenPackageFile.Click
-        txtPackageFile.Text = OpenFolder()
+        txtPackageFile.Text = OpenFolder().ToString()
     End Sub
 
     Private Sub btnAddPackages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddPackages.Click
@@ -349,7 +349,7 @@ Public Class frmMain
         txtOutput.Text = strOutput
     End Sub
 
-    Private Function OpenFolder()
+    Private Function OpenFolder() As Object
         dlgOpenFolder.ShowNewFolderButton = False
         dlgOpenFolder.RootFolder = Environment.SpecialFolder.MyComputer
         Dim DidWork As Integer = dlgOpenFolder.ShowDialog
@@ -362,8 +362,8 @@ Public Class frmMain
         End If
     End Function
 
-    
-    
+
+
     Private Sub btnGetAllDriverInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAllDriverInfo.Click
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
@@ -385,7 +385,7 @@ Public Class frmMain
                 MessageBox.Show("You must enter in a driver name before continuing.  The Driver name must end with inf")
             Else
                 strDelDriverLocation = txtDelDriverLocation.Text
-                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Driver /driver:" & strDelDriverLocation
+                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Driver /driver:""" & strDelDriverLocation & """"
                 BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
                 frmProgress.ShowDialog()
                 txtOutput.Text = strOutput
@@ -419,7 +419,7 @@ Public Class frmMain
                 MessageBox.Show("You must enter in a package path before continuing.  The package path must point to a valid cab file.")
             Else
                 strPackagePath = txtPackagePath.Text
-                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Package /PackagePath:" & strPackagePath
+                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Package /PackagePath:""" & strPackagePath & """"
                 BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
                 frmProgress.ShowDialog()
                 txtOutput.Text = strOutput
@@ -432,7 +432,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Features"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Features"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
