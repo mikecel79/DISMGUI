@@ -172,9 +172,9 @@ Public Class frmMain
         DISM.StartInfo.CreateNoWindow = True
         DISM.StartInfo.FileName = "dism.exe"
         If chkMountReadOnly.Checked = True Then
-            DISM.StartInfo.Arguments = "/Mount-WIM /ReadOnly /WimFile:""" & strWIM & """" & " /index:" & strIndex & " /MountDir:" & """" & strFolderName & """"
+            DISM.StartInfo.Arguments = "/Mount-WIM /ReadOnly /WimFile:""" & strWIM & """" & " /index:""" & strIndex & " /MountDir:" & """" & strFolderName & """"
         Else
-            DISM.StartInfo.Arguments = "/Mount-WIM /WimFile:""" & strWIM & """" & " /index:" & strIndex & " /MountDir:" & """" & strFolderName & """"
+            DISM.StartInfo.Arguments = "/Mount-WIM /WimFile:""" & strWIM & """" & " /index:""" & strIndex & " /MountDir:" & """" & strFolderName & """"
         End If
 
         strOutput = "Command line that ran is dism.exe " & DISM.StartInfo.Arguments
@@ -314,7 +314,7 @@ Public Class frmMain
         txtOutput.Text = strOutput
     End Sub
 
-    
+
     Private Sub btnDisplayWIMInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplayWIMInfo.Click
 
         If txtWIM.Text = "" Then
@@ -334,14 +334,14 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Packages"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Packages"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
         End If
     End Sub
 
-    
+
     Private Sub btnOpenPackageFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenPackageFile.Click
         txtPackageFile.Text = OpenFolder()
     End Sub
@@ -381,8 +381,8 @@ Public Class frmMain
         End If
     End Function
 
-    
-    
+
+
     Private Sub btnGetAllDriverInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAllDriverInfo.Click
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
@@ -439,7 +439,7 @@ Public Class frmMain
                 MessageBox.Show("You must enter in a package path before continuing.  The package path must point to a valid cab file.")
             Else
                 strPackagePath = txtPackagePath.Text
-                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Package /PackagePath:" & strPackagePath
+                strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Remove-Package /PackagePath:""" & strPackagePath & """"
                 BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
                 frmProgress.ShowDialog()
                 txtOutput.Text = strOutput
@@ -452,7 +452,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Features"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Features"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -599,7 +599,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-CurrentEdition"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-CurrentEdition"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -610,7 +610,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-TargetEditions"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-TargetEditions"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -647,7 +647,7 @@ Public Class frmMain
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
             Exit Sub
         Else
-            
+
         End If
 
         If txtEdition.Text = "" Then
@@ -695,7 +695,7 @@ Public Class frmMain
             'Do Nothing
         End If
         strXMLFileName = txtPatchLocation.Text
-        strDISMArguments = "/image:" & strMountedImageLocation & " /Apply-Unattend:" & strXMLFileName
+        strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Apply-Unattend:" & strXMLFileName
         BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
         frmProgress.ShowDialog()
         txtOutput.Text = strOutput
@@ -705,7 +705,7 @@ Public Class frmMain
         If WIMMounted = False Then
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
-            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Apps"
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-Apps"
             BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
             frmProgress.ShowDialog()
             txtOutput.Text = strOutput
@@ -758,7 +758,7 @@ Public Class frmMain
             txtOutput.Text = strOutput
         End If
 
-       
+
     End Sub
 
     Private Sub btnGetAppPatchInfo_Click(sender As System.Object, e As System.EventArgs) Handles btnGetAppPatchInfo.Click
@@ -825,7 +825,7 @@ Public Class frmMain
             'Do Nothing
         End If
 
-        
+
 
         If txtPatchLocation.Text = "" Then
             MessageBox.Show("You must enter an MSP file.")
@@ -834,7 +834,7 @@ Public Class frmMain
             'Do Nothing
         End If
         strMSPFileName = txtPatchLocation.Text
-        strDISMArguments = "/image:" & strMountedImageLocation & " /Check-AppPatch /PatchLocation:" & strMSPFileName
+        strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Check-AppPatch /PatchLocation:" & strMSPFileName
         BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
         frmProgress.ShowDialog()
         txtOutput.Text = strOutput
@@ -884,9 +884,9 @@ Public Class frmMain
         strCompression = cmbCompression.Text
 
         If chkCaptureVerify.Checked = True Then
-            strDISMArguments = "/Capture-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression + " /verify"
+            strDISMArguments = "/Capture-Image /ImageFile:""" & strDest & """" & " /CaptureDir:""" & strSource & """" & " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression + " /verify"
         Else
-            strDISMArguments = "/Capture-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression
+            strDISMArguments = "/Capture-Image /ImageFile:""" & strDest & """" & " /CaptureDir:""" & strSource & """" & " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression
         End If
 
 
@@ -954,7 +954,7 @@ Public Class frmMain
         strName = txtName.Text
         strCompression = cmbCompression.Text
 
-        strDISMArguments = "/Append-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34)
+        strDISMArguments = "/Append-Image /ImageFile:""" & strDest & """" & " /CaptureDir:""" & strSource & """" & " /Name:" + Chr(34) + strName + Chr(34)
         BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
         frmProgress.ShowDialog()
         txtOutput.Text = strOutput
@@ -1030,9 +1030,9 @@ Public Class frmMain
 
 
         If chkApplyVerify.Checked = True Then
-            strDISMArguments = "/Apply-Image /ImageFile:" & strSource & " /index:" & strAppendIndex & " /ApplyDir:" & strDest & " /Verify"
+            strDISMArguments = "/Apply-Image /ImageFile:""" & strSource & """" & " /index:""" & strAppendIndex & " /ApplyDir:" & strDest & """" & " /Verify"
         Else
-            strDISMArguments = "/Apply-Image /ImageFile:" & strSource & " /index:" & strAppendIndex & " /ApplyDir:" & strDest & ""
+            strDISMArguments = "/Apply-Image /ImageFile:""" & strSource & """" & " /index:""" & strAppendIndex & " /ApplyDir:" & strDest & """" & ""
         End If
         BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
         frmProgress.ShowDialog()
