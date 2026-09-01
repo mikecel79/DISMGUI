@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DISM GUI": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Darius\\New folder",
+      "nativeDebugging": true
+    }
+  }
+}

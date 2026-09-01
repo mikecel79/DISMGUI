@@ -1,0 +1,4 @@
+.vs
+DISM GUI/bin/**
+DISM GUI/obj/**
+DISM GUI/x64/**
